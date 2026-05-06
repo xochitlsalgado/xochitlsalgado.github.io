@@ -1,8 +1,11 @@
 <section>
 <h3>Education</h3>
 <ul>
-  <li *ngFor="let e of education">
-    {{ e.escuela }} - {{ e.carrera }}
+  <li *ngFor="let item of educationList">
+    <!-- Fíjate que los nombres coincidan con los de Firebase -->
+    <strong>{{ item.institution }}</strong> - {{ item.degree }}
+    <br>
+    <small>{{ item.startDate }} - {{ item.endDate }}</small>
   </li>
 </ul>
 </section>

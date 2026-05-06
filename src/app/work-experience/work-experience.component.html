@@ -1,6 +1,11 @@
 <section>
   <h3>Work Experience</h3>
-  <div *ngFor="let t of trabajos">
-    <p><strong>{{ t.puesto }}</strong> - {{ t.empresa }}</p>
-  </div>
+<ul>
+  <li *ngFor="let job of workExperienceList">
+    <strong>{{ job.position }}</strong> en <b>{{ job.company }}</b>
+    <br>
+    <small>{{ job.startDate }} - {{ job.endDate }}</small>
+    <p>{{ job.accomplishments }}</p>
+  </li>
+</ul>
 </section>
