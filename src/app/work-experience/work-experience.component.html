@@ -1,11 +1,16 @@
-<section>
-  <h3>Work Experience</h3>
-<ul>
-  <li *ngFor="let job of workExperienceList">
-    <strong>{{ job.position }}</strong> en <b>{{ job.company }}</b>
-    <br>
-    <small>{{ job.startDate }} - {{ job.endDate }}</small>
-    <p>{{ job.accomplishments }}</p>
-  </li>
-</ul>
-</section>
+<div class="experience-section">
+  <ul>
+    <li *ngFor="let job of workExperienceList" style="margin-bottom: 20px;">
+      <strong>{{ job.position }}</strong> en <b>{{ job.company }}</b>
+      <br>
+      <small>{{ job.startDate }} - {{ job.endDate }}</small>
+      
+      <!-- Lista de logros (Array) -->
+      <ul style="margin-top: 10px; list-style-type: disc; margin-left: 20px;">
+        <li *ngFor="let logro of getLogrosArray(job.accomplishments)">
+          {{ logro }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

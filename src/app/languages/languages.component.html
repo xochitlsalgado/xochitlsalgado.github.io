@@ -2,8 +2,9 @@
   <h3>Languages</h3>
   <ul>
   <li *ngFor="let item of languagesList">
-    <strong *ngIf="item.name">{{ item.name }}</strong>
-    <span *ngIf="item.level"> - {{ item.level }}</span>
+    <!-- Intenta leer en minúsculas o en Mayúsculas si la primera falla -->
+    <strong>{{ item.name }}</strong> 
+    <span> - {{ item.level }}</span>
   </li>
 </ul>
 </section>

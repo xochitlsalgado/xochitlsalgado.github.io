@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necesario para el *ngFor
+import { CommonModule } from '@angular/common'; 
 import { LanguagesService, Language } from '../services/languages-service/languages';
 
 @Component({
   selector: 'app-languages',
-  standalone: true,    // Lo hacemos standalone como los otros
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './languages.component.html',
   styleUrls: ['./languages.component.css']
 })
 export class LanguagesComponent implements OnInit {
-  // Aquí definimos el nombre exacto que busca el HTML
-  languagesList: Language[] = []; 
+  languagesList: Language[] = [];
 
   constructor(private languagesService: LanguagesService) {}
 
   ngOnInit(): void {
-    this.languagesService.getLanguages().subscribe(data => {
-      this.languagesList = data;
+    this.languagesService.getLanguages().subscribe((data: any[]) => {
+      // MAPEAMOS los datos para que el HTML siempre reciba minúsculas
+      this.languagesList = data.map(item => {
+        return {
+          id: item.id,
+          name: item.name || item.Name || '',
+          level: item.level || item.Level || ''
+        } as Language;
+      });
     });
   }
 }
