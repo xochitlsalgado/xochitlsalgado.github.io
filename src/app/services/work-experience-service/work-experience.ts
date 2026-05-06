@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-// Esta es la "receta" completa
 export interface WorkExperience {
   id?: string;
   company: string;
@@ -16,7 +15,6 @@ export interface WorkExperience {
   providedIn: 'root'
 })
 export class WorkExperienceService {
-
   constructor(private firestore: Firestore) {}
 
   getWorkExperience(): Observable<WorkExperience[]> {
