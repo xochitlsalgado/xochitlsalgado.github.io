@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { Certificate } from '../models/certificate.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Esto es vital
 })
-export class CvService {
-  constructor(private firestore: AngularFirestore) {}
+export class CertificatesService {
+  constructor(private db: AngularFirestore) {}
 
-  getCertificates(): Observable<Certificate[]> {
-    return this.firestore.collection<Certificate>('certificates').valueChanges();
+  getCertificates() {
+    return this.db.collection('certificates').valueChanges();
   }
 }
-

@@ -1,27 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CertificatesService } from '../services/certificates.service';
 
 @Component({
   selector: 'app-certificates',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './certificates.component.html',
-  styleUrls: []
+  standalone: false // Pon esto en false para que sea compatible con AppModule
 })
 export class CertificatesComponent implements OnInit {
-  // Lista fija con los datos exactos para garantizar el renderizado
-  certificates = [
-    {
-      title: 'Pandas',
-      institution: 'Kaggle',
-      url: 'https://www.kaggle.com/learn/certification/xochitlsalgado/pandas'
-    },
-    {
-      title: 'Python',
-      institution: 'Kaggle',
-      url: 'https://www.kaggle.com'
-    }
-  ];
+  certificates: any[] = []; // Inicializamos como array vacío
 
-  ngOnInit(): void {}
+  constructor(private certService: CertificatesService) {}
+
+  ngOnInit() {
+    this.certService.getCertificates().subscribe((data: any) => {
+      this.certificates = data;
+    });
+  }
 }

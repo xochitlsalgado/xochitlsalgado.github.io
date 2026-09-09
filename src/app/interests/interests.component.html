@@ -2,15 +2,13 @@
   <h3>Interests</h3>
   <ul>
     <li *ngFor="let interest of interests">
-      <!-- Si el texto incluye http:// o https:// -->
-      <ng-container *if="esUrl(interest.name); else textoNormal">
+      <ng-container *ngIf="esUrl(interest.name); else textoNormal">
         {{ obtenerTextoSinUrl(interest.name) }}
         <a [href]="obtenerUrl(interest.name)" target="_blank" rel="noopener noreferrer" class="text-primary">
           Ver enlace 🔗
         </a>
       </ng-container>
 
-      <!-- Si es solo texto normal -->
       <ng-template #textoNormal>
         {{ interest.name || interest }}
       </ng-template>

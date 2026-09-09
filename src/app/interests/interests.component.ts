@@ -8,7 +8,17 @@ import { InterestsService } from '../services/interests-service/interests';
   imports: [CommonModule],
   templateUrl: './interests.component.html'
 })
-export class InterestsComponent {
+export class InterestsComponent implements OnInit {
+  interests: any[] = [];
+
+  constructor(private interestsService: InterestsService) {}
+
+  ngOnInit(): void {
+    this.interestsService.getInterests().subscribe((data: any[]) => {
+      this.interests = data;
+    });
+  }
+
   // Comprueba si el texto contiene una URL
   esUrl(texto: string): boolean {
     return texto ? texto.includes('http://') || texto.includes('https://') : false;

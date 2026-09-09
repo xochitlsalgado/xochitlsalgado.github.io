@@ -4,9 +4,12 @@ import { Observable } from 'rxjs';
 
 export interface Certificate {
   id?: string;
-  title: string;
+  title?: string;
+  name?: string;
   institution?: string;
-  url: string;
+  issuer?: string;
+  url?: string;
+  year?: string;
 }
 
 @Injectable({

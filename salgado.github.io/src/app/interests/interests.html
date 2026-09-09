@@ -2,16 +2,18 @@
   <h3>Interests</h3>
   <ul>
     <li *ngFor="let interest of interests">
+      <!-- Si contiene una URL, crea el enlace cliqueable con el nombre formateado -->
       <a 
-        *ngIf="getUrl(interest) !== '#'; else textoPlano" 
+        *ngIf="getUrl(interest) !== '#'; else textoSimple" 
         [href]="getUrl(interest)" 
         target="_blank" 
         rel="noopener noreferrer" 
-        style="color: #2e9ce6; text-decoration: underline; font-weight: bold;">
+        style="color: inherit; text-decoration: underline;">
         {{ getText(interest) }}
       </a>
 
-      <ng-template #textoPlano>
+      <!-- Si es solo texto -->
+      <ng-template #textoSimple>
         {{ interest.name || interest }}
       </ng-template>
     </li>

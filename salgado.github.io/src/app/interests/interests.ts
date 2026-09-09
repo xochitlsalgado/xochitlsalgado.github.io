@@ -9,20 +9,20 @@ import { InterestsService } from '../services/interests.service';
   templateUrl: './interests.html',
   styleUrls: ['./interests.scss']
 })
-export class InterestsComponent implements OnInit {
-  interests: any[] = [];
+export class InterestsComponent {
+  interests: any[] = []; // ¡Necesitas declarar la variable aquí!
 
-  constructor(private interestsService: InterestsService) {}
+  constructor(private interestService: InterestsService) {}
 
   ngOnInit(): void {
-    if (this.interestsService.getInterests) {
+    if (this.interestsService && this.interestsService.getInterests) {
       this.interestsService.getInterests().subscribe((data: any) => {
         this.interests = data;
       });
     }
   }
 
-  // Si solo viene la URL, muestra 'Certificado Python', de lo contrario limpia el texto
+  // Convierte la URL completa a texto amigable
   getText(item: any): string {
     const str = item?.name || item || '';
     if (str.startsWith('http://') || str.startsWith('https://')) {
@@ -31,7 +31,7 @@ export class InterestsComponent implements OnInit {
     return str.split('http')[0].trim();
   }
 
-  // Extrae la URL exacta
+  // Extrae la URL limpia para el hipervínculo
   getUrl(item: any): string {
     const str = item?.name || item || '';
     const match = str.match(/(https?:\/\/[^\s]+)/);
